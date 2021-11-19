@@ -1,5 +1,9 @@
+import Table from './components/Table';
 import { useEffect, useState } from 'react';
-const api_base = 'http://localhost:3001';
+const api_base = 'http://localhost:3005';
+
+
+
 
 function App() {
 	const [todos, setTodos] = useState([]);
@@ -8,6 +12,7 @@ function App() {
 
 	useEffect(() => {
 		GetTodos();
+		
 	}, []);
 
 	const GetTodos = () => {
@@ -15,6 +20,7 @@ function App() {
 			.then(res => res.json())
 			.then(data => setTodos(data))
 			.catch((err) => console.error("Error: ", err));
+			console.log(todos)
 	}
 
 	const completeTodo = async id => {
@@ -54,15 +60,21 @@ function App() {
 	}
 
 	return (
+		
+			
 		<div className="App">
+		<Table />
 			<h1>Welcome, Tyler</h1>
 			<h4>Your tasks</h4>
 
 			<div className="todos">
+				
+
 				{todos.length > 0 ? todos.map(todo => (
 					<div className={
 						"todo" + (todo.complete ? " is-complete" : "")
 					} key={todo._id} onClick={() => completeTodo(todo._id)}>
+						
 						<div className="checkbox"></div>
 
 						<div className="text">{todo.text}</div>
@@ -87,6 +99,7 @@ function App() {
 				</div>
 			) : ''}
 		</div>
+		
 	);
 }
 
