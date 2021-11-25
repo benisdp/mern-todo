@@ -86,7 +86,7 @@ function App() {
 					<p>You currently have no tasks</p>
 				)}
 			</div>
-				{/* END TODO SECTION */}
+				{/* END TODO SECTIONN */}
 
 			<div className="addPopup" onClick={() => setPopupActive(true)}>+</div>
 
