@@ -1,5 +1,6 @@
 import Table from './components/Table';
 import { useEffect, useState } from 'react';
+import Header from './components/Header';
 const api_base = 'http://localhost:3005';
 
 
@@ -61,15 +62,15 @@ function App() {
 
 	return (
 		
-			
 		<div className="App">
+		<Header />
 		<Table />
 			<h1>Welcome, Tyler</h1>
 			<h4>Your tasks</h4>
 
 			<div className="todos">
 				
-
+				{/* TODO SECTION */}
 				{todos.length > 0 ? todos.map(todo => (
 					<div className={
 						"todo" + (todo.complete ? " is-complete" : "")
@@ -85,6 +86,7 @@ function App() {
 					<p>You currently have no tasks</p>
 				)}
 			</div>
+				{/* END TODO SECTION */}
 
 			<div className="addPopup" onClick={() => setPopupActive(true)}>+</div>
 

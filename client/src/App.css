@@ -8,6 +8,11 @@ table {
   padding: 1rem;
 }
 
+Title {
+	font-size: 100px;
+}
+
+
 th,
 td {
   border: 1px solid #ffffff;

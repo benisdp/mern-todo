@@ -1,4 +1,8 @@
-GET http://localhost:3005/todos HTTP/1.1
+GET http://localhost:3005/todos/ HTTP/1.1
+
+###
+
+GET http://localhost:3005/users/ HTTP/1.1
 
 ###
 
@@ -6,19 +10,37 @@ POST http://localhost:3005/todo/new/
 Content-Type: application/json
 
 {
-"text": "Pick up my gord"
+"text": "Pick up my gordiniooo"
 }
+
+###
+
+
+//BENI's TEST BLANKS
+POST http://localhost:3005/benisblanks/new
+
+{
+    "text": "What the ef"
+}
+###
+
+GET http://localhost:3005/localhost:3005/users/ HTTP/1.1
+
+###
+
+POST http://localhost:3005/users/new
+Content-Type: application/json
+
+{
+"name": "Pick up my gordindodododo"
+}
+
 ###
 
 DELETE http://localhost:3005/todo/delete/
 
 ###
-
-GET http://localhost:3002/todo/complete/60e585d86177f95ff0574323
-
-###
-
-PUT http://localhost:3002/todo/update/60e585d86177f95ff0574323 Content-Type: application/json
+PUT http://localhost:3005/todo/update/60e585d86177f95ff0574323 Content-Type: application/json
 
 {
 "text": "Go Shopping for Milk"

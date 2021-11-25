@@ -17,6 +17,7 @@
 table {
 	border-collapse: collapse;
   	width: 100%;
+	border-color: black;
   }
 
 th,
@@ -38,6 +39,12 @@ body {
 	padding: 32px;
 }
 
+.title {
+	color:green;
+	display: flex;
+	justify-content: center;
+}
+
 h1 {
 	font-size: 40px;
 	font-weight: 700;
@@ -50,6 +57,13 @@ h4 {
 	text-transform: uppercase;
 	font-weight: 400;
 	margin-bottom: 16px;
+}
+
+.adduser {
+	border-collapse: collapse;
+  	width: 100%;
+	border-color: black;
+
 }
 
 .todo {
