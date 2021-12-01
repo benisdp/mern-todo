@@ -1,8 +1,8 @@
-GET http://localhost:3005/todos/ HTTP/1.1
+GET http://localhost:3007/todos/ HTTP/1.1
 
 ###
 
-GET http://localhost:3005/users/ HTTP/1.1
+GET http://localhost:3007/users/ HTTP/1.1
 
 ###
 
@@ -28,11 +28,12 @@ GET http://localhost:3005/localhost:3005/users/ HTTP/1.1
 
 ###
 
-POST http://localhost:3005/users/new
+POST http://localhost:3007/users/new
 Content-Type: application/json
 
 {
-"name": "Pick up my gordindodododo"
+"name": "Pick up my gordindodododo",
+"textHistory": "gord"
 }
 
 ###
@@ -44,4 +45,11 @@ PUT http://localhost:3005/todo/update/60e585d86177f95ff0574323 Content-Type: app
 
 {
 "text": "Go Shopping for Milk"
+}
+###
+
+PUT GET http://localhost:3007/users/update
+
+{
+    "textHistory": "Nov 123"
 }

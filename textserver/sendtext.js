@@ -6,7 +6,7 @@ const twilio = require('twilio')
 
 
 const accountSid = 'ACcb1e99ee4228c6479168e1777d6e1e0e'
-const authToken = 'a4eb4ba19d64d3502f6e19e7850fe15f'
+const authToken = 'deaa48223e591fe9e75a57daa2fe4a0a'
 
 const client = require('twilio')(accountSid, authToken);
 
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
 //must have nodemon installed, http://localhost:4000
 
-app.listen(4000, ()=> console.log("listeningfor4000"))
+app.listen(4000, () => console.log("listeningfor4000"))
 
 
 app.get("/send-text", (req, res) =>{

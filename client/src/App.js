@@ -1,7 +1,7 @@
 import Table from './components/Table';
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
-const api_base = 'http://localhost:3005';
+const api_base = 'http://localhost:3007';
 
 
 
@@ -10,6 +10,7 @@ function App() {
 	const [todos, setTodos] = useState([]);
 	const [popupActive, setPopupActive] = useState(false);
 	const [newTodo, setNewTodo] = useState("");
+	const [cats, setCats] = useState("")
 
 	useEffect(() => {
 		GetTodos();
@@ -31,14 +32,22 @@ function App() {
 			if (todo._id === data._id) {
 				todo.complete = data.complete;
 			}
-
 			return todo;
 		}));
 		
 	}
 
+	const editTodo = async id => {
+		const data = await fetch(api_base + '/todo/update/' + id, {
+			method: "PUT"
+		}).then(res => res.json());
+
+
+	}
+	
+	
 	const addTodo = async () => {
-		const data = await fetch(api_base + "/todo/new", {
+		const data = await fetch(api_base + "/todos/new", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json" 
@@ -49,10 +58,27 @@ function App() {
 		}).then(res => res.json());
 
 		setTodos([...todos, data]);
-
 		setPopupActive(false);
 		setNewTodo("");
 	}
+
+	
+	// const editTodo = async () => {
+	// 	const data = await fetch(api_base + "/todo/new", {
+	// 		method: "PUT",
+	// 		headers: {
+	// 			"Content-Type": "application/json" 
+	// 		},
+	// 		body: JSON.stringify({
+	// 			text: newTodo
+	// 		})
+	// 	}).then(res => res.json());
+
+	// 	setTodos([...todos, data]);
+
+	// 	setPopupActive(false);
+	// 	setNewTodo("");
+	// }
 
 	const deleteTodo = async id => {
 		const data = await fetch(api_base + '/todo/delete/' + id, { method: "DELETE" }).then(res => res.json());
@@ -80,7 +106,10 @@ function App() {
 
 						<div className="text">{todo.text}</div>
 
+						<button onClick={editTodo(todo._id)}>edito</button>
+
 						<div className="delete-todo" onClick={() => deleteTodo(todo._id)}>x</div>
+						
 					</div>
 				)) : (
 					<p>You currently have no tasks</p>
@@ -88,7 +117,7 @@ function App() {
 			</div>
 				{/* END TODO SECTIONN */}
 
-			<div className="addPopup" onClick={() => setPopupActive(true)}>+</div>
+			<div className="addPopup" onClick={() => setPopupActive(true)}>+</div>å
 
 			{popupActive ? (
 				<div className="popup">
@@ -97,6 +126,7 @@ function App() {
 						<h3>Add Task</h3>
 						<input type="text" className="add-todo-input" onChange={e => setNewTodo(e.target.value)} value={newTodo} />
 						<div className="button" onClick={addTodo}>Create Task</div>
+						<button onCLick="edit">edit</button>
 					</div>
 				</div>
 			) : ''}

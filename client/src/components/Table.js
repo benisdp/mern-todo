@@ -1,13 +1,15 @@
 import React from "react"
 import { useEffect, useState} from "react"
 import TextForm from "./TextForm";
-const api_base = 'http://localhost:3005';
+const api_base = 'http://localhost:3007';
 
 function Table () {
 	const [users, setUsers] = useState([]);
 	const [newUser, setNewUser] = useState('');
 	const [newUserNumber, setNewUserNumber] = useState('');
 	const [newUserGuardId, setNewUserGuardId] = useState('');
+	const [numberOfTexts, setNumberOfTexts] = useState('')
+	const [timeHistory, setTimeHistory] = useState('test')
 
 	useEffect(() => {
 		GetUsers();
@@ -25,6 +27,33 @@ function Table () {
 		const data = await fetch(api_base + '/users/delete/' + id, { method: "DELETE" }).then(res => res.json());
 		setUsers(users => users.filter(todo => todo._id !== data.result._id));
 	}
+
+	const putUser = async id => {
+		const data = await fetch(api_base + '/users/' + id, { 
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json" 
+			},
+			body: JSON.stringify({
+				textHistory: "chordle",	
+			})
+		}).then(res => res.json());
+		setUsers([...users, data])
+	}
+
+	// editUser1(() => {
+	// 	async function updateUser() {
+	// 		const requestOptions = {
+	// 			method: 'PUT',
+	// 			headers: { 'Content-Type': 'application/json' },
+	// 			body: JSON.stringify({ name: 'example' })
+	// 		};
+	// 		const response = await fetch('');
+	// 		const data = await response.json();
+	// 		UserID(data.id);
+	// 	}
+	// 	updateUser();
+	// }, []);
 
 	const addUser = async () => {
 		const data = await fetch(api_base + "/users/new", {
@@ -45,22 +74,10 @@ function Table () {
 		setNewUserGuardId("")
 	}
 
-	//NEED TO ADD THIS TO GIVE USER PARAMETERS
-	// const handleAddFormSubmit = (event) => {
-	// 	event.preventDefault();
+	const timeValue = (stamp) => {
+		return new Date().toLocaleString()
+	}
 	
-	// 	const newContact = {
-	// 	  id: nanoid(),
-	// 	  fullName: addFormData.fullName,
-	// 	  guardNumber: addFormData.guardNumber,
-	// 	  phoneNumber: addFormData.phoneNumber,
-	// 	  email: addFormData.email,
-	// 	};
-	
-	// 	const newContacts = [...contacts, newContact];
-	// 	setContacts(newContacts);
-	//   };
-
     return(
         <div className="table">
 			<div className="todos">
@@ -72,6 +89,7 @@ function Table () {
 							<th>Phone Number</th>
                     		<th>Text</th>
 							<th>Text History</th>
+							<th>Amount of texts sent</th>
 						</tr>
 					</thead>
 					{users.map(user => (
@@ -81,12 +99,19 @@ function Table () {
 							<td>{user.phoneNumber}</td>					
 							<td>
 								<button>
-								<TextForm user={user}/>
+								<TextForm 
+								user={user}
+								users={users}/>
 								</button>
 							</td>
 							<td>
-								{user.timestamp}
-							</td>	
+								{timeValue(user.timestamp)}
+							</td>
+							<td>
+								<h1>{timeHistory}</h1>
+								<button onClick={putUser}> edit le user</button>
+							</td>
+							
 							<div onClick={() => deleteUser(user._id)}>x</div>
     		    	</tbody>
 					))}
