@@ -88,14 +88,6 @@ app.get('/todo/complete/:id', async (req, res) => {
 // 	const user = await 
 // })
 
-app.put('/users/update/:id', async (req, res) => {
-	const user = await Todo.findById(req.params.id);
-	user.textHistory.push("testage")
-	user.save();
-	res.json(user);
-});
-
-
 app.get("/send-text", (req, res) =>{
     //_GET variables, passed via query string 
     const {recipient, textmessage} = req.query

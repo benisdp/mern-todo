@@ -6,25 +6,16 @@ GET http://localhost:3007/users/ HTTP/1.1
 
 ###
 
+GET http://localhost:3007/users
+
+###
+
 POST http://localhost:3005/todo/new/
 Content-Type: application/json
 
 {
 "text": "Pick up my gordiniooo"
 }
-
-###
-
-
-//BENI's TEST BLANKS
-POST http://localhost:3005/benisblanks/new
-
-{
-    "text": "What the ef"
-}
-###
-
-GET http://localhost:3005/localhost:3005/users/ HTTP/1.1
 
 ###
 
@@ -53,3 +44,4 @@ PUT GET http://localhost:3007/users/update
 {
     "textHistory": "Nov 123"
 }
+
